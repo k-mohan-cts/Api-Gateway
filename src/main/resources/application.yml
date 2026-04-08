@@ -8,14 +8,23 @@ spring:
     gateway:
       mvc: # Add the 'mvc' node here
         routes:
+          - id: Recoveryprogram-route
+            uri: lb://PROGRAMMANAGMENTAPPLICATION
+            predicates:
+              - Path=/api/programs/**
+          - id: Resource-route
+            uri: lb://PROGRAMMANAGMENTAPPLICATION
+            predicates:
+              - Path=/api/resources/**
           - id: audit-route
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
-              - Path=/api/audits/**
+                - Path=/api/audits/**
           - id: compliance-route
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
-              - Path=/api/audits/**
+            - Path=/api/audits/**
+
           - id: relief-item-route
             uri: lb://RELIEFMANAGEMENTAPPLICACTION
             predicates:
