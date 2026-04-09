@@ -16,11 +16,12 @@ spring:
             uri: lb://PROGRAMMANAGMENTAPPLICATION
             predicates:
               - Path=/api/resources/**
-          - id: audit-route
-            uri: lb://AUDITCOMPLIANCEMANAGEMENT
+
+          - id: user-citizen-management
+            uri: lb://UserCitizenManagement
             predicates:
-                - Path=/api/audits/**
-          - id: compliance-route
+              - Path=/api/users/**, /api/citizens/**, /api/documents/**, /api/reports/**,/api/logs/**
+          - id: audit-service
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
             - Path=/api/audits/**
