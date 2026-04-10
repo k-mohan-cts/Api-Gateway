@@ -62,7 +62,7 @@ spring:
           - id: shelter-route
             uri: lb://RELIEFMANAGEMENTAPPLICACTION
             predicates:
-              - Path=/api/Shelters/**
+              - Path=/api/shelters/**
             # This removes the first two parts (/api/audits)
             # so the Audit service only sees "/all"
 
