@@ -8,14 +8,39 @@ spring:
     gateway:
       mvc: # Add the 'mvc' node here
         routes:
+          - id: Recoveryprogram-route
+            uri: lb://PROGRAMMANAGMENTAPPLICATION
+            predicates:
+              - Path=/api/programs/**
+          - id: Resource-route
+            uri: lb://PROGRAMMANAGMENTAPPLICATION
+            predicates:
+              - Path=/api/resources/**
           - id: audit-route
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
               - Path=/api/audits/**
+          - id: audit-log-route
+            uri: lb://USERCITIZENMANAGEMENT
+            predicates:
+              - Path=/api/logs/**
+          - id: user-mgmt-route
+            uri: lb://USERCITIZENMANAGEMENT
+            predicates:
+              - Path=/api/users/**
+          - id: citizen-mgmt-route
+            uri: lb://USERCITIZENMANAGEMENT
+            predicates:
+              - Path=/api/citizens/**
+
+          # --- User & Citizen Management Module ---
+
+
           - id: compliance-route
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
               - Path=/api/audits/**
+
           - id: relief-item-route
             uri: lb://RELIEFMANAGEMENTAPPLICACTION
             predicates:
@@ -25,7 +50,15 @@ spring:
             uri: lb://RELIEFMANAGEMENTAPPLICACTION
             predicates:
               - Path=/Distributions/**
+          - id: document-route
+            uri: lb://USERCITIZENMANAGEMENT # Replace with your actual Eureka Service ID
+            predicates:
+              - Path=/api/documents/**
 
+          - id: reports-route
+            uri: lb://USERCITIZENMANAGEMENT # Replace with your actual Eureka Service ID
+            predicates:
+              - Path=/api/reports/**
           - id: shelter-route
             uri: lb://RELIEFMANAGEMENTAPPLICACTION
             predicates:
