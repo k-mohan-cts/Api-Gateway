@@ -6,7 +6,7 @@ spring:
     name: API-GATEWAY
   cloud:
     gateway:
-      mvc: # Add the 'mvc' node here
+      server.webflux: # Add the 'mvc' node here
         routes:
           - id: Recoveryprogram-route
             uri: lb://PROGRAMMANAGMENTAPPLICATION
@@ -71,7 +71,7 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
-logging:
-  level:
-    org.springframework: TRACE
-    org.springframework.http.server: TRACE
+#logging:
+#  level:
+#    org.springframework: TRACE
+#    org.springframework.http.server: TRACE
