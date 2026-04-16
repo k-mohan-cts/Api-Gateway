@@ -8,14 +8,12 @@ spring:
     gateway:
       server.webflux: # Add the 'mvc' node here
         routes:
-          - id: Recoveryprogram-route
+          # --- Program Management Service ---
+          - id: program-mgmt-route
             uri: lb://PROGRAMMANAGMENTAPPLICATION
             predicates:
-              - Path=/api/programs/**
-          - id: Resource-route
-            uri: lb://PROGRAMMANAGMENTAPPLICATION
-            predicates:
-              - Path=/api/resources/**
+              - Path=/api/programs/**, /api/resources/**, /api/reports/**, /api/incidents/**
+
           - id: audit-route
             uri: lb://AUDITCOMPLIANCEMANAGEMENT
             predicates:
