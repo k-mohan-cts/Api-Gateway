@@ -26,7 +26,8 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
             "/api/users/login",
             "/api/users/createUser",
             "/api/users/getUserIdByEmail",
-            "/api/citizens/createCitizen"
+            "/api/citizens/createCitizen",
+            "/api/documents/upload"
     );
 
     @Override
