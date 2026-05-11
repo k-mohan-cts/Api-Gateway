@@ -27,7 +27,10 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
             "/api/users/createUser",
             "/api/users/getUserIdByEmail",
             "/api/citizens/createCitizen",
-            "/api/documents/upload"
+                "/api/documents/upload",
+                "/api/documents/getDocById/",
+                "/api/documents/download/",
+            "/api/documents/citizen/"
     );
 
     @Override
@@ -37,7 +40,7 @@ public class JwtAuthFilter implements GlobalFilter, Ordered {
         log.info("Global filter processing request for path: {}", path);
 
         // Check if the current path is in our list of allowed public endpoints
-        if (PUBLIC_ENDPOINTS.contains(path)) {
+        if (PUBLIC_ENDPOINTS.stream().anyMatch(publicPath -> path.equals(publicPath) || path.startsWith(publicPath))) {
             log.info("Public endpoint accessed, bypassing JWT: {}", path);
             return chain.filter(exchange);
         }
